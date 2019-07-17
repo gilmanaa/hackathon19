@@ -5,6 +5,13 @@ import json
 
 TEMPLATE_PATH.insert(0, os.path.dirname(__file__))
 
+google_route_data = {}
+
+@route('/gatherRouteData',method="POST")
+def gatherRouteData():
+    data = request.POST.get('route')
+    google_route_data['data'] = json.loads(data)
+
 @route('/map')
 def map():
     return template('./map.html')
