@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,31 @@
     <link rel="stylesheet" href="./css/styles.css">
     <title>SafeNet</title>
 </head>
+
 <body>
+    <div id="container">Ⓖⓞ②
+        <div id="imgWrapper">
+            <div id="pic"></div>
+        </div>
+
+<div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+        <input id="where2go" type="text" placeholder="Where are you now?"><br/>
+        <p>Are you:</p>
+        <a href="#">Walking</a>
+        <a href="#">Driving</a>
+        <a href="#">Transit</a>
+        </div>
+      </div>
+                 
+        <div id="buttonWrapper">
+            <input id="where2go" type="text" placeholder="Where do you want to go?">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; submit</span><!--<button id="submitButton">submit</button>-->
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="./js/index.js"></script>
 </body>
+
 </html>
