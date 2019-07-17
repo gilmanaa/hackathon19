@@ -6,6 +6,8 @@ import json
 TEMPLATE_PATH.insert(0, os.path.dirname(__file__))
 
 google_route_data = {}
+origin = {}
+destination = {}
 
 @route('/gatherRouteData',method="POST")
 def gatherRouteData():
