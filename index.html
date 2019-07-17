@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/styles.css">
     <title>SafeNet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
     <div id="container">Ⓖⓞ②
         <div id="imgWrapper">
             <div id="pic"></div>
@@ -18,8 +21,18 @@
 <div id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
-        <input id="where2go" type="text" placeholder="Where are you now?"><br/>
+        <input id="where3go" type="text" placeholder="Where are you now?"><br/>
+        <button id="submit" onclick="setOrigin();">submit</button>
         <p>Are you:</p>
+            <i class="fa fa-car"></i> 
+            <i class="fa fa-bicycle"></i>  
+            <i class="fa fa-subway"></i>
+            <i class="far fa-walking"></i> 
+            <input type="radio" name="method" id="walking" class="radio" onclick="setMethod(e)" value="walking">Walking</button>
+            <input type="radio" name="method" id="biking" class="radio" onclick="setMethod(e)" value="biking">Biking</button>
+            <input type="radio" name="method" id="transit" class="radio" onclick="setMethod(e)" value="transit">Transit</button>
+            <input type="radio" name="method" id="driving" class="radio" onclick="setMethod(e)" value="driving">Driving</button>
+
         <a href="#">Walking</a>
         <a href="#">Driving</a>
         <a href="#">Transit</a>
@@ -28,7 +41,7 @@
                  
         <div id="buttonWrapper">
             <input id="where2go" type="text" placeholder="Where do you want to go?">
-            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; submit</span><!--<button id="submitButton">submit</button>-->
+            <button style="font-size:30px;cursor:pointer" onclick="setDest(), openNav();">submit</button><!--<button id="submitButton">submit</button>-->
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
