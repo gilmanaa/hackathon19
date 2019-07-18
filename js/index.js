@@ -12,8 +12,23 @@ function openNav() {
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
 }
-function languageSelection() {
-    var appLang = "he";
+
+document.getElementById("fr").addEventListener("click", languageSelection())
+mobility.lang=$(".dropdown-content p") 
+for(i=0; i<mobility.lang.length; i++){
+    $(mobility.lang[i]).click(function(e){
+        languageSelection(e.target.id)
+    })
+}
+
+function languageSelection(appLang) {
+    if (appLang == "en") {
+        document.getElementById("where2go").placeholder = "Where do you want to go?"
+        document.getElementById("submit").innerHTML = "Submit"
+        document.getElementById("going").innerHTML = "I am going by:"
+        document.getElementById("where3go").placeholder = "Where are you now?"
+
+    }
     if (appLang == "sp") {
         document.getElementById("where2go").placeholder = "A donde quieres ir?"
         document.getElementById("submit").innerHTML = "Enviar"
@@ -31,6 +46,12 @@ function languageSelection() {
         document.getElementById("submit").innerHTML = "שלח"
         document.getElementById("going").innerHTML = "דרך הגעה"
         document.getElementById("where3go").placeholder = "איפה את/ה עכשיו"
+    }
+    if (appLang == "ru") {
+        document.getElementById("where2go").placeholder = "Место назначения"
+        document.getElementById("submit").innerHTML = "Поиск"
+        document.getElementById("going").innerHTML = "Способ передвижения"
+        document.getElementById("where3go").placeholder = "Ваше местоположение"
     }
 
 }

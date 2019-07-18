@@ -2,6 +2,7 @@ html, body{
     margin: 0px;
     padding: 0px;
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif
 }
 #container{
     display: flex;
@@ -59,7 +60,7 @@ i{
 }
 #where2go{
     border: 5px grey solid;
-    color: fuchsia;
+    color: darkslategray;
 }
 #submit{
     background-color: lightgrey;
@@ -73,7 +74,7 @@ i{
 }
 input[type="text"] {
     width:300px;
-    color: fuchsia;
+    color: darkslategray;
 }
 #pic {
     background-image: url("../images/chicago.jpg");
