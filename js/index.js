@@ -22,6 +22,18 @@ for(i=0; i<mobility.lang.length; i++){
     })
 }
 
+mobility.mode=$(".dropdown-content i") 
+for(i=0; i<mobility.mode.length; i++){
+    $(mobility.mode[i]).click(function(e){
+        modeSelection(e.target.id)
+    })
+}
+function modeSelection(modeOfTransit){
+    mobility.travelMode=modeOfTransit;
+    console.log("hi")
+    console.log("Mode of Transit: " + modeOfTransit)
+    console.log("TravelMode: " + travelMode)
+}
 function languageSelection(appLang) {
     if (appLang == "en") {
         document.getElementById("where2go").placeholder = "Where do you want to go?"
