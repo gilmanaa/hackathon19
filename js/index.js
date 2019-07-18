@@ -14,33 +14,33 @@ function closeNav() {
 }
 
 document.getElementById("fr").addEventListener("click", languageSelection())
-mobility.lang=$(".dropdown-content p") 
-for(i=0; i<mobility.lang.length; i++){
-    $(mobility.lang[i]).click(function(e){
+mobility.lang = $(".dropdown-content p")
+for (i = 0; i < mobility.lang.length; i++) {
+    $(mobility.lang[i]).click(function (e) {
         languageSelection(e.target.id)
     })
 }
 
 var drone = document.querySelector(".drone")
-$(drone).click(function(){
+$(drone).click(function () {
     var alert = document.createElement("div")
     alert.classList.add("drone-alert");
     alert.innerHTML = "<div>Drone Alerted!</div><img src='./images/drone-moving.gif' height='200px'/>"
     var pic = document.querySelector("#pic")
     pic.appendChild(alert)
-    setTimeout(function(){
+    setTimeout(function () {
         pic.innerHTML = ""
-    },5000)
+    }, 5000)
 })
 
-mobility.mode=$(".dropdown-content i") 
-for(i=0; i<mobility.mode.length; i++){
-    $(mobility.mode[i]).click(function(e){
+mobility.mode = $(".dropdown-content i")
+for (i = 0; i < mobility.mode.length; i++) {
+    $(mobility.mode[i]).click(function (e) {
         modeSelection(e.target.id)
     })
 }
-function modeSelection(modeOfTransit){
-    mobility.travelModeSelection=modeOfTransit;
+function modeSelection(modeOfTransit) {
+    mobility.travelModeSelection = modeOfTransit;
     console.log("hi")
     console.log("Mode of Transit: " + modeOfTransit)
     console.log("TravelMode: " + travelMode)
@@ -191,14 +191,14 @@ function initMap() {
 }
 
 function newRoute() {
-    if (typeof(mobility.travelModeSelection) === "undefined") {
+    if (typeof (mobility.travelModeSelection) === "undefined") {
         mobility.travelModeSelection = "WALKING"
     }
     $.ajax({
         type: "POST",
         url: "http://localhost:7000/newRoute",
         dataType: "json",
-        data: {mode: mobility.travelModeSelection},
+        data: { mode: mobility.travelModeSelection },
         success: function (response) {
             var routeCoordinates = []
             var centerLat;
@@ -229,6 +229,7 @@ function newRoute() {
                 center: { lat: centerLat, lng: centerLng },
                 zoom: 7
             });
+            console.log(startLat, startLng, centerLat, centerLng, endLat, endLng)
             var newPath = new google.maps.Polyline({
                 path: routeCoordinates,
                 geodesic: true,
@@ -250,6 +251,23 @@ function newRoute() {
                 label: 'B',
                 animation: google.maps.Animation.DROP
             });
+            for (let i = 0; i < 100; i++) {
+                randLat = Math.random() / 100
+                randLng = Math.random() / 100
+                new google.maps.Marker({
+                    map: map,
+                    position: { lat: centerLat - randLat, lng: centerLng - randLng },
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: '#00F',
+                        fillOpacity: 0.6,
+                        strokeColor: '#00A',
+                        strokeOpacity: 0.9,
+                        strokeWeight: 1,
+                        scale: 7
+                    }
+                });
+            }
             newPath.setMap(map);
             var latlngbounds = new google.maps.LatLngBounds();
             for (var i = 0; i < routeCoordinates.length; i++) {
@@ -257,6 +275,42 @@ function newRoute() {
             }
             map.fitBounds(latlngbounds);
         }
+    })
+    var home = $(".home-button-map")
+    $(home[0]).click(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:7000/",
+            success: function (response) {
+                var newBody = response.split('<body>')[1];
+                var newBody1 = newBody.split('</body>')[0];
+                document.getElementsByTagName('body')[0].innerHTML = newBody1;
+                document.getElementById("fr").addEventListener("click", languageSelection())
+                mobility.lang = $(".dropdown-content p")
+                for (i = 0; i < mobility.lang.length; i++) {
+                    $(mobility.lang[i]).click(function (e) {
+                        languageSelection(e.target.id)
+                    })
+                }
+                var drone = document.querySelector(".drone")
+                $(drone).click(function () {
+                    var alert = document.createElement("div")
+                    alert.classList.add("drone-alert");
+                    alert.innerHTML = "<div>Drone Alerted!</div><img src='./images/drone-moving.gif' height='200px'/>"
+                    var pic = document.querySelector("#pic")
+                    pic.appendChild(alert)
+                    setTimeout(function () {
+                        pic.innerHTML = ""
+                    }, 5000)
+                })
+                mobility.mode = $(".dropdown-content i")
+                for (i = 0; i < mobility.mode.length; i++) {
+                    $(mobility.mode[i]).click(function (e) {
+                        modeSelection(e.target.id)
+                    })
+                }
+            }
+        })
     })
 }
 

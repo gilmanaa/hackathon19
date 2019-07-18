@@ -222,3 +222,14 @@ input[type="text"]
 .drone-alert img {
   border-radius: 5px;
 }
+
+.home-button-map {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+}
