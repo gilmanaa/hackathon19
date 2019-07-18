@@ -21,17 +21,6 @@ function setDest() {
     getDestination()
     console.log("this works")
 }
-
-function getOrigin() {
-    origin = document.getElementById("where3go").value;
-    console.log(document.getElementById("where3go"))
-    console.log(origin)
-}
-
-function setOrigin() {
-    getOrigin()
-}
-
 function getOrigin() {
     origin = document.getElementById("where3go").value;
     console.log(document.getElementById("where3go"))

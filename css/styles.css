@@ -10,18 +10,69 @@ body{
     align-items: center;
     width: 500px;
     height: 600px;
-    background:rgba(63, 184, 191, 0.99);
+    background:darkslategrey;
     font-size: 30px;
     font-weight: bold;
+}
+#language{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+}
+#dropwdown{
+    display: flex;
+    justify-content: space-between;
+}
+#dropdownWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20px;
+    width: 90%;
+}
+i{
+    height: 50px;
+    width: 100px;
+}
+#go2{
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
 }
 #myNav{
     color: white;
 }
+#alarm{
+    color: white;
+    height:15px;
+    width: 20px;
+}
 .fa {
     height: 20px;
     width: 20px;
-    color:rgba(63, 184, 191, 0.99);
+    color:darkslategray;
     margin: 30px;
+}
+#where2go{
+    border: 5px grey solid;
+    color: fuchsia;
+}
+#submit{
+    background-color: lightgrey;
+    border-radius: 10%;
+    color: darkslategray;
+}
+.submit{
+    background-color: lightgrey;
+    border-radius: 10%;
+    color: darkslategray;
+}
+input[type="text"] {
+    width:300px;
+    color: fuchsia;
 }
 #pic {
     background-image: url("../images/chicago.jpg");
@@ -31,16 +82,36 @@ body{
    }
 #buttonWrapper{
     display: flex;
+    justify-content: center;
     align-items: stretch;
     font-size: 24px;
-    border: 5px black solid;
+    width: 75%;
+    top: 5%;
 }
 input[type="text"]
 {
     font-size:20px;
 }
 
-
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: darkslategray;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 .overlay {
     height: 100%;
     width: 0;
@@ -91,4 +162,37 @@ input[type="text"]
     }
   }
 
-
+  .dropbtn {
+    background-color: darkslategray;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color:darkslategray;}

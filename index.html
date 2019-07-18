@@ -12,38 +12,49 @@
 
 <body>
 
-    <div id="container">Ⓖⓞ②
+    <div id="container">
+        <div id="dropdownWrapper">
+                <i id="alarm" class="fa fa-bell"></i>
+
+            <div class="dropdown">
+                <button class="dropbtn">En</button>
+                <div class="dropdown-content">
+                    <p>En</p>
+                    <p>Sp</p>
+                    <p>עב</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="go2">Ⓖⓞ②</div>
         <div id="imgWrapper">
             <div id="pic"></div>
-            <div id="buttonWrapper">
-                <input id="where2go" type="text" placeholder="Where do you want to go?">
-                <button style="font-size:30px;cursor:pointer" onclick="setDest(), openNav();">submit</button>
-                <!--<button id="submitButton">submit</button>-->
-            </div>
+        </div>
+        <div id="buttonWrapper">
+            <input id="where2go" type="text" placeholder="Where do you want to go?">
+            <button id="submit" style="font-size:30px;cursor:pointer" onclick="setDest(), openNav();">submit</button>
+            <!--<button id="submitButton">submit</button>-->
         </div>
 
         <div id="myNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
                 <input id="where3go" type="text" placeholder="Where are you now?"><br />
-                <button id="submit" onclick="setOrigin();">submit</button>
-                <p>Are you:</p>
-                <i class="fa fa-car"></i>
-                <i class="fa fa-bicycle"></i>
-                <i class="fa fa-subway"></i>
-                <i class="far fa-walking"></i>
-                <input type="radio" name="method" id="walking" class="radio" onclick="setMethod(e)"
-                    value="walking">Walking</button>
-                <input type="radio" name="method" id="biking" class="radio" onclick="setMethod(e)"
-                    value="biking">Biking</button>
-                <input type="radio" name="method" id="transit" class="radio" onclick="setMethod(e)"
-                    value="transit">Transit</button>
-                <input type="radio" name="method" id="driving" class="radio" onclick="setMethod(e)"
-                    value="driving">Driving</button>
+                <div class="dropdown">
+                    <span>I am going by:</span>
+                    <div class="dropdown-content">
+                        <i class="fa fa-bicycle"></i>
+                        <i class="fa fa-subway"></i>
+                        <i class="fa fa-car"></i>
+                        <i class="fa fa-male"></i>
+                    </div>
+                </div>
+                <br />
+                <button id="submit" class="submit" onclick="setOrigin(), location.replace();" height="40"
+                    width="100">submit</button>
 
-                <a href="#">Walking</a>
-                <a href="#">Driving</a>
-                <a href="#">Transit</a>
+
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
