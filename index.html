@@ -14,14 +14,15 @@
 
     <div id="container">
         <div id="dropdownWrapper">
-                <i id="alarm" class="fa fa-bell"></i>
+                <img src="./images/plutodronespinner.gif"/>
             <div class="dropdown">
                 <button class="dropbtn">En</button>
                 <div class="dropdown-content">
-                    <p>En</p>
-                    <p>Sp</p>
-                    <p>Fr</p>
-                    <p>עב</p>
+                    <p id='en'>En</p>
+                    <p id="sp">Sp</p>
+                    <p id="fr">Fr</p>
+                    <p id="he">עב</p>
+                    <p id="ru">Ru</p>
                 </div>
             </div>
         </div>
@@ -31,8 +32,8 @@
             <div id="pic"></div>
         </div>
         <div id="buttonWrapper">
-            <input id="where2go" type="text" placeholder="Where do you want to go?">
-            <button id="submit" style="font-size:30px;cursor:pointer" onclick="setDest(), openNav();">submit</button>
+            <input id="where2go" type="text" placeholder="Where do you want to go?">            <button id="submit" style="font-size:30px;cursor:pointer" onclick="setDest(), openNav();">submit</button>
+
             <!--<button id="submitButton">submit</button>-->
         </div>
 
@@ -50,7 +51,7 @@
                     </div>
                 </div>
                 <br />
-                <button id="submit" class="submit" onclick="setOrigin(), location.replace();" height="40"
+                <button id="submit" class="submit" onclick="setOrigin()" height="40"
                     width="100">submit</button>
 
 
