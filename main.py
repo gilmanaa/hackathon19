@@ -3,6 +3,9 @@ import os
 import pymysql
 import json
 import sqlite3
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 TEMPLATE_PATH.insert(0, os.path.dirname(__file__))
 
@@ -77,3 +80,91 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+'''
+df = pd.read_csv('Chicago_Crimes_2012_to_2017.csv')
+df.drop(
+    ['Block', 'Updated On', 'Year', 'Unnamed: 0', 'ID', 'Case Number', 'Date', 'IUCR', 'Description', 'Arrest', 'Ward',
+     'Community Area'], axis=1, inplace=True)
+
+street_crime = ['STREET',
+                'SIDEWALK',
+                'PARKING LOT/GARAGE(NON.RESID.)',
+                'ALLEY',
+                'RESIDENTIAL YARD (FRONT/BACK)',
+                'RESTAURANT',
+                'RESIDENCE-GARAGE',
+                'RESIDENCE PORCH/HALLWAY',
+                'VEHICLE NON-COMMERCIAL',
+                'GAS STATION',
+                'PARK PROPERTY',
+                'CTA PLATFORM',
+                'CTA TRAIN',
+                'VACANT LOT/LAND',
+                'SCHOOL, PUBLIC, GROUNDS',
+                'CTA BUS',
+                'POLICE FACILITY/VEH PARKING LOT',
+                'CHA PARKING LOT/GROUNDS',
+                'ABANDONED BUILDING',
+                'DRIVEWAY - RESIDENTIAL',
+                'CTA BUS STOP',
+                'CTA GARAGE / OTHER PROPERTY',
+                'ATM (AUTOMATIC TELLER MACHINE)',
+                'CURRENCY EXCHANGE',
+                'TAXICAB',
+                'CTA STATION',
+                'CONSTRUCTION SITE',
+                'SPORTS ARENA/STADIUM',
+                'VEHICLE-COMMERCIAL',
+                'OTHER RAILROAD PROP / TRAIN DEPOT',
+                'COLLEGE/UNIVERSITY GROUNDS',
+                'SCHOOL, PRIVATE, GROUNDS',
+                'DAY CARE CENTER',
+                'OTHER COMMERCIAL TRANSPORTATION',
+                'CAR WASH',
+                'MOVIE HOUSE/THEATER',
+                'AIRPORT PARKING LOT',
+                'COLLEGE/UNIVERSITY RESIDENCE HALL',
+                'LAKEFRONT/WATERFRONT/RIVERBANK',
+                'AUTO',
+                'HIGHWAY/EXPRESSWAY',
+                'VEHICLE - OTHER RIDE SERVICE',
+                'BRIDGE',
+                'PORCH',
+                'CEMETARY',
+                'YARD',
+                'DELIVERY TRUCK']
+
+df_street = df[df['Location Description'].isin(street_crime)]
+df_street = df_street[df_street['Domestic'] == False]
+df_street.index = [i for i in range(len(df_street))]
+
+data = df_street.loc[:2000]
+
+
+def crime_around(kind_crime, df, route):
+    def distance(p1, p2):
+        return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
+
+    pts_route = np.zeros((len(route), 2))
+    for i in range(len(route)):
+        pts_route[i, 0] = route[i]['lat']
+        pts_route[i, 1] = route[i]['lng']
+
+    data = df.groupby('Primary Type').get_group(kind_crime)
+    data_lat = data.Latitude.values
+    data_lng = data.Longitude.values
+    data_pts = np.column_stack((data_lat, data_lng))
+
+    p_crime = []
+    for p in pts_route:
+        for d in data_pts:
+            if distance(p, d) <= 0.01:
+                p_crime.append(d)
+    return np.array(p_crime).reshape(len(p_crime), 2)
+
+
+# example
+crime_around('BATTERY', data, route)
+'''

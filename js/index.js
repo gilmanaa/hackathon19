@@ -194,6 +194,7 @@ function newRoute() {
     if (typeof (mobility.travelModeSelection) === "undefined") {
         mobility.travelModeSelection = "WALKING"
     }
+    document.getElementById("body").classList.remove("body-wrapper")
     $.ajax({
         type: "POST",
         url: "http://localhost:7000/newRoute",
@@ -229,7 +230,6 @@ function newRoute() {
                 center: { lat: centerLat, lng: centerLng },
                 zoom: 7
             });
-            console.log(startLat, startLng, centerLat, centerLng, endLat, endLng)
             var newPath = new google.maps.Polyline({
                 path: routeCoordinates,
                 geodesic: true,
@@ -282,7 +282,7 @@ function newRoute() {
             type: "GET",
             url: "http://localhost:7000/",
             success: function (response) {
-                var newBody = response.split('<body>')[1];
+                var newBody = response.split('<body id="body" class="body-wrapper">')[1];
                 var newBody1 = newBody.split('</body>')[0];
                 document.getElementsByTagName('body')[0].innerHTML = newBody1;
                 document.getElementById("fr").addEventListener("click", languageSelection())
@@ -309,6 +309,7 @@ function newRoute() {
                         modeSelection(e.target.id)
                     })
                 }
+                document.getElementById("body").classList.add("body-wrapper")
             }
         })
     })
