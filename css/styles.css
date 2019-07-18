@@ -1,6 +1,7 @@
-body{
+html, body{
     margin: 0px;
     padding: 0px;
+    height: 100%;
 }
 #container{
     display: flex;
@@ -196,3 +197,6 @@ input[type="text"]
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color:darkslategray;}
+#map {
+    height: 100%;
+}
