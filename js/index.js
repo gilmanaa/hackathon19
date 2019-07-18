@@ -11,6 +11,28 @@ function openNav() {
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
 }
+function languageSelection() {
+    var appLang = "he";
+    if (appLang == "sp") {
+        document.getElementById("where2go").placeholder = "A donde quieres ir?"
+        document.getElementById("submit").innerHTML = "Enviar"
+        document.getElementById("going").innerHTML = "Voy en:"
+        document.getElementById("where3go").placeholder = "Donde estas ahora?"
+    }
+    if (appLang == "fr") {
+        document.getElementById("where2go").placeholder = "Où veux-tu aller?"
+        document.getElementById("submit").innerHTML = "Entree"
+        document.getElementById("going").innerHTML = "Moyen de transport"
+        document.getElementById("where3go").placeholder = "Où es-tu?"
+    }
+    if (appLang == "he") {
+        document.getElementById("where2go").placeholder = "לאן את/ה נוסע"
+        document.getElementById("submit").innerHTML = "שלח"
+        document.getElementById("going").innerHTML = "דרך הגעה"
+        document.getElementById("where3go").placeholder = "איפה את/ה עכשיו"
+    }
+
+}
 
 function getDestination() {
     destination = document.getElementById("where2go").value;
