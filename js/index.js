@@ -1,5 +1,4 @@
 mobility = {}
-
 var destination;
 var origin;
 var travelMode;
