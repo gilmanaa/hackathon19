@@ -198,6 +198,27 @@ input[type="text"]
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color:darkslategray;}
-#map {
+
+  #map {
     height: 100%;
+}
+
+.drone {
+  height: 50px;
+  transition: background-color 1s, border-radius 1s;
+}
+.drone:hover {
+  background-color: red;
+  border-radius: 5px;
+}
+.drone-alert {
+  background-color: red;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.drone-alert img {
+  border-radius: 5px;
 }

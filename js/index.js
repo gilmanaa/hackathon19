@@ -21,6 +21,18 @@ for(i=0; i<mobility.lang.length; i++){
     })
 }
 
+var drone = document.querySelector(".drone")
+$(drone).click(function(){
+    var alert = document.createElement("div")
+    alert.classList.add("drone-alert");
+    alert.innerHTML = "<div>Drone Alerted!</div><img src='./images/drone-moving.gif' height='200px'/>"
+    var pic = document.querySelector("#pic")
+    pic.appendChild(alert)
+    setTimeout(function(){
+        pic.innerHTML = ""
+    },5000)
+})
+
 function languageSelection(appLang) {
     if (appLang == "en") {
         document.getElementById("where2go").placeholder = "Where do you want to go?"
