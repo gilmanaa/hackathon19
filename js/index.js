@@ -99,7 +99,7 @@ function sendRouteData() {
     $.ajax({
         type: "GET",
         url: "http://localhost:7000/map",
-        success: function(response) {
+        success: function (response) {
             var newBody = response.split('<body>')[1];
             var newBody1 = newBody.split('</body>')[0];
             document.getElementsByTagName('body')[0].innerHTML = newBody1;
@@ -120,41 +120,72 @@ function initMap() {
         zoom: 8
     });
     directionsDisplay.setMap(map);
-    //code below needs to be removed once new coordinates are returned from server
-    var origin = mobility.origin;
-    var destination = mobility.destination;
-    var mode = mobility.travelMode;
-    directionsService.route({
-        origin: origin,
-        destination: destination,
-        travelMode: "WALKING"
-    }, function (response, status) {
-        if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
+    newRoute();
 }
 
 function newRoute() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 32.109, lng: 34.855 },
-        zoom: 8
-    });
-    var routeCoordinates = [
-        { lat: 37.772, lng: -122.214 },
-        { lat: 21.291, lng: -157.821 },
-        { lat: -18.142, lng: 178.431 },
-        { lat: -27.467, lng: 153.027 }
-    ];
-    var newPath = new google.maps.Polyline({
-        path: routeCoordinates,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-    });
-    newPath.setMap(map);
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:7000/newRoute",
+        dataType: "json",
+        success: function (response) {
+            var routeCoordinates = []
+            var centerLat;
+            var centerLng;
+            var startLat;
+            var startLng;
+            var endLat;
+            var endLng;
+            for (let i = 0; i < response.length; i++) {
+                var lat_lng = {}
+                lat_lng['lat'] = response[i][0];
+                lat_lng['lng'] = response[i][1];
+                routeCoordinates.push(lat_lng)
+                if (i === 0) {
+                    startLat = response[i][0];
+                    startLng = response[i][1];
+                }
+                if (i === Math.round(response.length / 2)) {
+                    centerLat = response[i][0];
+                    centerLng = response[i][1];
+                }
+                if (i === response.length - 1) {
+                    endLat = response[i][0];
+                    endLng = response[i][1];
+                }
+            }
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: centerLat, lng: centerLng },
+                zoom: 7
+            });
+            var newPath = new google.maps.Polyline({
+                path: routeCoordinates,
+                geodesic: true,
+                strokeColor: '#008000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+            var marker = new google.maps.Marker({
+                position: { lat: startLat, lng: startLng },
+                map: map,
+                title: 'Origin',
+                label: 'A',
+                animation: google.maps.Animation.DROP
+            });
+            var marker = new google.maps.Marker({
+                position: { lat: endLat, lng: endLng },
+                map: map,
+                title: 'Destination',
+                label: 'B',
+                animation: google.maps.Animation.DROP
+            });
+            newPath.setMap(map);
+            var latlngbounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < routeCoordinates.length; i++) {
+                latlngbounds.extend(routeCoordinates[i]);
+            }
+            map.fitBounds(latlngbounds);
+        }
+    })
 }
 

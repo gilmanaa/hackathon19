@@ -43,6 +43,15 @@ def gatherRouteData():
     conn.commit()
     cur.close()
 
+@route('/newRoute')
+def newRoute():
+    mode = "WALKING"
+    conn = sqlite3.connect('routeDB.sqlite')
+    cur = conn.cursor()
+    cur.execute('Select lat,lng From {}'.format(mode))
+    result = cur.fetchall()
+    return json.dumps(result)
+
 @route('/map')
 def map():
     return template('./map.html')
