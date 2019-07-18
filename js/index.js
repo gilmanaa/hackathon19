@@ -1,3 +1,4 @@
+mobility = {}
 var destination;
 var origin;
 var travelMode;
@@ -60,7 +61,7 @@ function setMethod(e) {
     console.log(method)
 }
 
-mobility = {}
+
 
 function getGoogleRouteData(dest, orig) {
     var travelModes = ["BICYCLING", "DRIVING", "TRANSIT", "TWO_WHEELER", "WALKING"];
