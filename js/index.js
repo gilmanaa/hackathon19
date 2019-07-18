@@ -33,6 +33,18 @@ $(drone).click(function(){
     },5000)
 })
 
+mobility.mode=$(".dropdown-content i") 
+for(i=0; i<mobility.mode.length; i++){
+    $(mobility.mode[i]).click(function(e){
+        modeSelection(e.target.id)
+    })
+}
+function modeSelection(modeOfTransit){
+    mobility.travelModeSelection=modeOfTransit;
+    console.log("hi")
+    console.log("Mode of Transit: " + modeOfTransit)
+    console.log("TravelMode: " + travelMode)
+}
 function languageSelection(appLang) {
     if (appLang == "en") {
         document.getElementById("where2go").placeholder = "Where do you want to go?"
@@ -179,10 +191,14 @@ function initMap() {
 }
 
 function newRoute() {
+    if (typeof(mobility.travelModeSelection) === "undefined") {
+        mobility.travelModeSelection = "WALKING"
+    }
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:7000/newRoute",
         dataType: "json",
+        data: {mode: mobility.travelModeSelection},
         success: function (response) {
             var routeCoordinates = []
             var centerLat;

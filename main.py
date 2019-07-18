@@ -43,9 +43,9 @@ def gatherRouteData():
     conn.commit()
     cur.close()
 
-@route('/newRoute')
+@route('/newRoute',method="POST")
 def newRoute():
-    mode = "WALKING"
+    mode = request.POST.get('mode')
     conn = sqlite3.connect('routeDB.sqlite')
     cur = conn.cursor()
     cur.execute('Select lat,lng From {}'.format(mode))
